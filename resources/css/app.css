@@ -1,0 +1,53 @@
+/* Plugins */
+@import url("./backend/vectormap/jquery-jvectormap-2.0.2.css");
+@import url("./backend/simplebar/css/simplebar.css");
+@import url("./backend/perfect-scrollbar/css/perfect-scrollbar.css");
+@import url("./backend/metismenu/css/metisMenu.min.css");
+@import url("./backend/dataTables.bootstrap5.min.css");
+
+/* summer_note */
+/* @import url("https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"); */
+
+/* Loader */
+@import url("./backend/pace.min.css");
+
+/* Bootstrap */
+@import url("./backend/bootstrap.min.css");
+@import url("./backend/bootstrap-extended.css");
+@import url("../../node_modules/bootstrap-icons/font/bootstrap-icons.min.css");
+
+/* Select2 */
+@import url("./backend/select2/css/select2.min.css");
+@import url("./backend/select2/css/select2-bootstrap4.css");
+
+/* Theme */
+@import url("./backend/app.css");
+
+
+.error_box {
+    border: 1px solid red;
+}
+
+.error_txt {
+    font-size: 10px;
+    float: right;
+    margin-top: 6px;
+}
+
+.modal-title {
+    line-height: 0px !important;
+}
+
+.fifty_percent {
+    width: 50%;
+}
+
+.hundred_percent {
+    width: 100%;
+}
+
+.table_bottom_border {
+    border-bottom: 1px solid currentColor;
+}
+
+
