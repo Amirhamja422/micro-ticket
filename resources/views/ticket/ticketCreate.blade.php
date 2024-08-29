@@ -44,7 +44,18 @@
                             <select id="sub_cat_id" class="result form-control" required>
                             </select>
                         </div>
-
+                        <div class="col-xl-4 mb-2">
+                            <label class="form-label mb-1" for="complain_id">Complain<span
+                                    class="text-danger">*</span>
+                            </label>
+                            <span class="text-danger error_txt complain_id"></span>
+                            <select id="complain_id" class="result form-control" required>
+                                <option value=""> </option>
+                                @foreach ($complainList as $complainlists)
+                                    <option value="{{ $complainlists->id }}">{{ $complainlists->complain_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="col-xl-4 mb-2">
                             <span class="text-danger error_txt Customer Name"></span>
                             <x-widgets.input-component inputColClass="col-xl-12" inputLabel="Customer Name"
@@ -174,6 +185,9 @@
             const strippedDescription = theEditor.getData();
             const description = strippedDescription.replace(/<\/?p[^>]*>/g, "");
             const department_id = $('#department_id').val();
+            const complain_id = $('#complain_id').val();
+            const cat_id = $('#cat_id').val();
+            const sub_cat_id = $('#sub_cat_id').val();
             const contact_name = $('#contact_name').val();
             const status = $('#status').val();
             const email = $('#email').val();
@@ -184,6 +198,9 @@
             formData.append('attachment', attachment);
             formData.append('description', description);
             formData.append('department_id', department_id);
+            formData.append('complain_id', complain_id);
+            formData.append('cat_id', cat_id);
+            formData.append('sub_cat_id', sub_cat_id);
             formData.append('contact_name', contact_name);
             formData.append('status', status);
             formData.append('email', email);

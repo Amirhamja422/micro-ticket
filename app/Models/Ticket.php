@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Ticket extends Model
 {
     use HasFactory;
-    protected $fillable = ['client_id','department_id', 'creator_user_id','product_id','phone','contact_name','email','merchant_name','channel','call_type','employee_id','ticket_owner','assign_user_id','subject','description','status','ticket_sla_time'];
+    protected $fillable = ['client_id','department_id','complain_id','cat_id','sub_cat_id', 'creator_user_id','product_id','phone','contact_name','email','merchant_name','channel','call_type','employee_id','ticket_owner','assign_user_id','subject','description','status','ticket_sla_time'];
 
     /**
      * Client name

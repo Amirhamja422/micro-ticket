@@ -8,7 +8,7 @@ use App\Models\User;
 use App\Models\Ticket;
 use App\Models\TicketDetail;
 use App\Models\TicketHistory;
-use App\Models\Classification;
+use App\Models\Complain;
 use App\Models\Department;
 use App\Models\Category;
 use App\Models\SubCategory;
@@ -48,8 +48,9 @@ class TicketController extends Controller
         $statusList = _status_();
         $priorityList = _priority_();
         $categoryList = Category::where('is_active', '1')->get();
+        $complainList = Complain::where('is_active', '1')->get();
 
-        return view('ticket.ticketCreate', compact(['users', 'departments', 'statusList', 'categoryList', 'priorityList']))->render();
+        return view('ticket.ticketCreate', compact(['users', 'departments', 'statusList', 'categoryList', 'priorityList','complainList']))->render();
     }
 
 
@@ -76,6 +77,16 @@ class TicketController extends Controller
      */
     public function store(TicketStoreRequest $request)
     {
+
+        $complainSlaTime = $request->complain_id;
+        $get_sla_time = DB::table('complains')
+            ->select('complain_sla_time')
+            ->where('id', $complainSlaTime)
+            ->latest()
+            ->first();
+
+        $current_time = time();
+        $fix_sla_time = date("Y-m-d H:i:s", $current_time + $get_sla_time->complain_sla_time);
 
 
         $attachment = $request->file('attachment');
@@ -105,12 +116,15 @@ class TicketController extends Controller
         }
 
         $store = Ticket::create([
-            // 'creator_user_id' => $user_id, $store->id,
             'department_id' => $request->department_id,
+            'complain_id' => $request->complain_id,
+            'cat_id' => $request->cat_id,
+            'sub_cat_id' => $request->sub_cat_id,
             'contact_name' => $request->contact_name,
             'status' => $request->status,
             'email' => $request->email,
             'description' => $description,
+            'ticket_sla_time' => $fix_sla_time,
 
         ]);
 
@@ -127,17 +141,6 @@ class TicketController extends Controller
             'description' => $description,
             'attachments' => $new_name ?? null,  // Use null if no attachment
         ]);
-
-
-        // TicketOptional::create([
-        //     'ticket_id' => $store->id,
-        //     'phone' => $store->phone,
-        //     'priority' => $store->priority,
-        // ]);
-
-        event(new TicketNotification($store));
-
-
 
         ## return message
         if ($store) {
@@ -242,7 +245,28 @@ class TicketController extends Controller
                      return $selectHtmlstatus;
                  })
 
-                 ->rawColumns(['actions', 'ticket_owner_id', 'status'])
+
+                 ->addColumn('ticket_sla_time', function ($resultData) {
+                    $currentTime = date("Y-m-d H:i:s");
+
+                    // Determine the message and color based on ticket_sla_time
+                    if ($resultData->ticket_sla_time < $currentTime) {
+                        $msg = 'SLA time over';
+                        $color = 'black';
+                        $bgColor='red';
+                    } else {
+                        $msg = 'SLA time within limit';
+                        $color = 'white';
+                        $bgColor='green';
+
+                    }
+
+                    // Return the message wrapped in a styled span
+                    return '<span class="chip sm" style="color:' . $color . '; background-color:' . $bgColor . ';">' . $msg . '</span>';
+
+                })
+
+                 ->rawColumns(['actions', 'ticket_owner_id', 'status','ticket_sla_time'])
                  ->make(true);
          }
      }

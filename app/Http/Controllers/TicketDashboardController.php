@@ -12,11 +12,11 @@ class TicketDashboardController extends Controller
         // Define variable
         $date = date('Y-m-d');
         //Only for email ticket Count today's data
-        $allTicket = $TicketCountService->totalTickets($date, $date);
-        $openTicket = $TicketCountService->openTickets($date, $date);
-        $solveTicket = $TicketCountService->solvedTickets($date, $date);
-        $workingTicket = $TicketCountService->workingTickets($date, $date);
-        $pendingTicket = $TicketCountService->pendingTickets($date, $date);
+        // $allTicket = $TicketCountService->totalTickets($date, $date);
+        // $openTicket = $TicketCountService->openTickets($date, $date);
+        // $solveTicket = $TicketCountService->solvedTickets($date, $date);
+        // $workingTicket = $TicketCountService->workingTickets($date, $date);
+        // $pendingTicket = $TicketCountService->pendingTickets($date, $date);
 
 
         //Only for ticket Count today's data
@@ -32,11 +32,11 @@ class TicketDashboardController extends Controller
 
         // Put data
         $data = [
-            'total' => $allTicket,
-            'openTicket' => $openTicket,
-            'workingTicket' => $workingTicket,
-            'pendingTicket' => $pendingTicket,
-            'solveTicket' => $solveTicket,
+            // 'total' => $allTicket,
+            // 'openTicket' => $openTicket,
+            // 'workingTicket' => $workingTicket,
+            // 'pendingTicket' => $pendingTicket,
+            // 'solveTicket' => $solveTicket,
             // 'chart' => $chart
             'openManualTickets' => $openManualTickets,
             'workingManualTickets' => $workingManualTickets,

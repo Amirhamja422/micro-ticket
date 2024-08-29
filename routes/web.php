@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\ClassificationController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ComplainController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\PermissionGroupController;
 use App\Http\Controllers\DepartmentController;
@@ -60,7 +61,6 @@ Route::middleware(['middleware' => 'auth'])->group(function () {
     ## Ticket download
     Route::get('ticket-download', [TicketController::class, 'exportExcelFile'])->name('ticket.export');
 
-
     ## user
     Route::get('/user', [UserController::class, 'index'])->name('user');
     Route::get('/user-create', [UserController::class, 'create'])->name('user.create');
@@ -79,7 +79,6 @@ Route::middleware(['middleware' => 'auth'])->group(function () {
     Route::put('/dept-data-update/{id}', [DepartmentController::class, 'update'])->name('dept.data.update');
     Route::get('/dept-status-change/{id}', [DepartmentController::class, 'statusChange'])->name('dept.status.change');
 
-
     ## Status
     Route::get('/status', [StatusController::class, 'index'])->name('status');
     Route::get('/status-list-datatable', [StatusController::class, 'datatable'])->name('status.list.datatable');
@@ -89,7 +88,6 @@ Route::middleware(['middleware' => 'auth'])->group(function () {
     Route::put('/status-data-update/{id}', [StatusController::class, 'update'])->name('status.data.update');
     Route::get('/status-status-change/{id}', [StatusController::class, 'statusChange'])->name('status.status.change');
 
-
     ## Classifications
     Route::get('/classification', [ClassificationController::class, 'index'])->name('classification');
     Route::get('/classification-list-datatable', [ClassificationController::class, 'datatable'])->name('classification.list.datatable');
@@ -98,8 +96,6 @@ Route::middleware(['middleware' => 'auth'])->group(function () {
     Route::get('/classification-edit/{id}', [ClassificationController::class, 'edit'])->name('classification.edit');
     Route::put('/classification-data-update/{id}', [ClassificationController::class, 'update'])->name('classification.data.update');
     Route::get('/classification-status-change/{id}', [ClassificationController::class, 'statusChange'])->name('classification.status.change');
-
-
 
     ## Category
     Route::get('/category', [CategoryController::class, 'index'])->name('category');
@@ -118,6 +114,16 @@ Route::middleware(['middleware' => 'auth'])->group(function () {
     Route::get('/subcategory-edit/{id}', [SubCategoryController::class, 'edit'])->name('subcategory.edit');
     Route::put('/subcategory-data-update/{id}', [SubCategoryController::class, 'update'])->name('subcategory.data.update');
     Route::get('/subcategory-status-change/{id}', [SubCategoryController::class, 'statusChange'])->name('subcategory.status.change');
+
+
+    ## Complain
+    Route::get('/complain', [ComplainController::class, 'index'])->name('complain');
+    Route::get('/complain-list-datatable', [ComplainController::class, 'datatable'])->name('complain.list.datatable');
+    Route::get('/complain-create', [ComplainController::class, 'create'])->name('complain.create');
+    Route::post('/complain-store', [ComplainController::class, 'store'])->name('complain.store');
+    Route::get('/complain-edit/{id}', [ComplainController::class, 'edit'])->name('complain.edit');
+    Route::put('/complain-data-update/{id}', [ComplainController::class, 'update'])->name('complain.data.update');
+    Route::get('/complain-status-change/{id}', [ComplainController::class, 'statusChange'])->name('complain.status.change');
 
 
     ## Ticket

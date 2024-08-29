@@ -35,6 +35,8 @@
 
                         @if(Auth::User()->can('user'))<li><a class="dropdown-item" href="{{ route('subcategory') }}" ><i class="bi bi-arrow-right"></i>Sub category</a></li>@endif
 
+                        @if(Auth::User()->can('user'))<li><a class="dropdown-item" href="{{ route('complain') }}" ><i class="bi bi-arrow-right"></i>Complain</a></li>@endif
+
                         @if(Auth::User()->can('user'))<li><a class="dropdown-item" href="{{ route('status') }}" ><i class="bi bi-arrow-right"></i>Status</a></li>@endif
                     </ul>
                 </li>

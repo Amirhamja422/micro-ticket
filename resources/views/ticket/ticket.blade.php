@@ -70,6 +70,7 @@
                                     <th>Email</th>
                                     <th>status</th>
                                     <th>Assign Person</th>
+                                    <th>SLA Time</th>
                                     <th>Action</th>
 
                                 </tr>
@@ -257,6 +258,10 @@
                         {
                             data: 'ticket_owner_id',
                             name: 'ticket_owner_id'
+                        },
+                        {
+                            data: 'ticket_sla_time',
+                            name: 'ticket_sla_time'
                         },
 
                         {

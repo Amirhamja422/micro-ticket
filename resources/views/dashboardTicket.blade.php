@@ -3,7 +3,7 @@
     <x-slot name="title">Dashboard</x-slot>
     <x-slot name="content_area">
         <div class="row">
-            <div class="col-md-6"><p class="pera">Total Email Ticket</p>
+            {{-- <div class="col-md-6"><p class="pera">Total Email Ticket</p>
                 <div class="row row-cols-1 row-cols-md-2 main_div">
                      <x-widgets.counter-component
                         gradient="scooter" name="Open Ticket" count="{{ $data['openTicket'] }}"
@@ -22,10 +22,23 @@
                         border="border-warning" countClass="text-warning"
                         icon="bi bi-envelope-check-fill" />
                 </div>
-            </div>
+            </div> --}}
 
             <div class="col-md-6"><p class="pera">
-                    Total Manual Ticket</p>
+                Ticket Dashboard</p>
+                <div class="row row-cols-1 row-cols-md-2 main_div">
+                    <x-widgets.counter-component gradient="scooter" name="Open Ticket"  count="{{ $data['openManualTickets'] }}"
+                        border="border-info" countClass="text-info" icon="bi bi-cart" />
+                        <x-widgets.counter-component gradient="bloody" name="Working Ticket"  count="{{ $data['workingManualTickets'] }}"
+                        border="border-danger" countClass="text-danger" icon="bi bi-people-fill" />
+                        <x-widgets.counter-component gradient="ohhappiness" name="Pending Ticket"  count="{{ $data['pendingManualTickets'] }}"
+                        border="border-success" countClass="text-success" icon="bi bi-wallet" />
+                        <x-widgets.counter-component gradient="blooker" name="Solved Ticket"  count="{{ $data['solvedManualTickets'] }}"
+                        border="border-warning" countClass="text-warning" icon="bi bi-collection" />
+                </div>
+            </div>
+            <div class="col-md-6"><p class="pera">
+                Ticket Dashboard</p>
                 <div class="row row-cols-1 row-cols-md-2 main_div">
                     <x-widgets.counter-component gradient="scooter" name="Open Ticket"  count="{{ $data['openManualTickets'] }}"
                         border="border-info" countClass="text-info" icon="bi bi-cart" />
