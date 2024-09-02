@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\API\CategorysController;
 use App\Http\Controllers\Api\DepartmentsController;
+use App\Http\Controllers\API\RegsController;
 use App\Http\Controllers\Api\TicketskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -24,7 +25,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 ## ticket data view using api
 //  Route::middleware('auth:sanctum')->group( function () {
     Route::resource('tickets', TicketskController::class);
-    Route::resource('category', CategorysController::class);
     Route::resource('departments', DepartmentsController::class);
+    Route::resource('register', RegsController::class);
+
 // });
 

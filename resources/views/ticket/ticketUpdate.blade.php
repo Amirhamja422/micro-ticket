@@ -43,7 +43,7 @@
                                 @else
                                     @foreach ($categoryList as $categorylists)
                                         <option
-                                            {{ $categorylists->id == $ticketDetailsData->service_category_id ? 'selected' : '' }}
+                                            {{$resultData->cat_id == $categorylists->id ? 'selected' : '' }}
                                             value="{{ $categorylists->id }}">{{ $categorylists->cat_name }}</option>
                                     @endforeach
                                 @endif
@@ -56,6 +56,24 @@
                             </label>
                             <span class="text-danger error_txt sub_cat_id"></span>
                             <select id="sub_cat_id" class="result form-control" required>
+                            </select>
+                        </div>
+
+
+
+                        <div class="col-xl-4 mb-2">
+                            <label class="form-label mb-1" for="cat_id">Sub Category<span
+                                    class="text-danger">*</span>
+                            </label>
+                            <span class="text-danger error_txt cat_id"></span>
+                            <select id="cat_id" class="result form-control" required>
+                                <option value=""> </option>
+                                    @foreach ($subcategoryList as $subcategoryLists)
+                                        <option
+                                            {{$resultData->sub_cat_id == $subcategoryLists->id ? 'selected' : '' }}
+                                            value="{{ $subcategoryLists->id }}">{{ $subcategoryLists->sub_cat_name }}</option>
+                                    @endforeach
+
                             </select>
                         </div>
 

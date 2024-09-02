@@ -217,33 +217,20 @@ class TicketController extends Controller
                      return $html;
                  })
 
+
                  ->addColumn('ticket_owner_id', function ($resultData) use ($users) {
-                     $selectHtmlAssign = "<select class='custom-select form-control' onchange='handleSelectAssign(" . $resultData->id . ", this)' style='width:13rem;'>";
-                     $selectHtmlAssign .= "<option selected>Select an assign person</option>";
+                    // Fetch the ticket owner for the current ticket
+                    $ticketAssignPerson = TicketDetail::where('ticket_id', $resultData->id)->first();
 
-                     foreach ($users as $user) {
-                         $selected = $resultData->contact_name ==  $user->id ? 'selected' : '';
+                    // Get the assigned user's name, if available
+                    if ($ticketAssignPerson) {
+                        $assignedUser = $users->firstWhere('id', $ticketAssignPerson->ticket_owner);
+                        return $assignedUser ? $assignedUser->name : 'No Owner';
+                    }
 
-                         $selectHtmlAssign .= "<option value='" . $user->id . "' $selected>" . $user->name . "</option>";
-                     }
+                    return 'No Owner'; // Return placeholder if no owner is assigned
+                })
 
-                     $selectHtmlAssign .= "</select>";
-
-                     return $selectHtmlAssign;
-                 })
-
-                 ->addColumn('status', function ($resultData) use ($statusList) {
-                     $selectHtmlstatus = "<select class='custom-select form-control' onchange='handleSelectStatus(" . $resultData->id . ", this)' style='width:7rem;'>";
-                     $selectHtmlstatus .= "<option selected>Select a status</option>";
-
-                     foreach ($statusList as $status) {
-                         $selected = $resultData->status == $status[0] ? 'selected' : '';
-                         $selectHtmlstatus .= "<option value='" . $status[0] . "' $selected>" . $status[0] . "</option>";
-                     }
-                     $selectHtmlstatus .= "</select>";
-
-                     return $selectHtmlstatus;
-                 })
 
 
                  ->addColumn('ticket_sla_time', function ($resultData) {
@@ -356,9 +343,10 @@ class TicketController extends Controller
         $departments = Department::where('is_active', '1')->get();
         $statusList = _status_();
         $categoryList = Category::where('is_active', '1')->get();
+        $subcategoryList = SubCategory::where('is_active', '1')->get();
         $users = User::where('is_active', '1')->get();
         $priorityList = _priority_();
-        return view('ticket.ticketUpdate', compact(['priorityList', 'users', 'categoryList', 'statusList', 'resultData', 'departments','ticketDetailsData','ticketHistoryData']))->render();
+        return view('ticket.ticketUpdate', compact(['priorityList', 'users', 'categoryList', 'statusList', 'resultData', 'departments','ticketDetailsData','ticketHistoryData','subcategoryList']))->render();
 
     }
 
