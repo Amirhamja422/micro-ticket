@@ -71,9 +71,7 @@
     <!--end wrapper-->
 
 
-    {{-- <script src="{{ mix('js/app.js') }}"></script> --}}
     <script type="text/javascript" src="{{ URL::asset('js/app.js') }}"></script>
-    <script src="https://js.pusher.com/8.2.0/pusher.min.js"></script> <!-- pusher cdn -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     <script src="https://cdn.ckeditor.com/ckeditor5/41.3.1/classic/ckeditor.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>

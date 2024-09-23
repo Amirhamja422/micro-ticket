@@ -16,7 +16,7 @@
                         </div>
                         <div class="col-xl-4 mb-2">
                             <label class="form-label mb-1" for="department_id"> Department <span
-                                    class="text-danger">*</span>
+                                    class="text-danger"></span>
                             </label>
                             <span class="text-danger error_txt department_id"></span>
                             <select id="department_id" class="result form-control" required>
@@ -30,7 +30,7 @@
 
                         <div class="col-xl-4 mb-2">
                             <label class="form-label mb-1" for="cat_id">Category<span
-                                    class="text-danger">*</span>
+                                    class="text-danger"></span>
                             </label>
                             <span class="text-danger error_txt cat_id"></span>
                             <select id="cat_id" class="result form-control" onchange="getcatData()"; required>
@@ -51,19 +51,8 @@
                         </div>
 
                         <div class="col-xl-4 mb-2">
-                            <label class="form-label mb-1" for="sub_cat_id">Sub Category<span
-                                    class="text-danger">*</span>
-                            </label>
-                            <span class="text-danger error_txt sub_cat_id"></span>
-                            <select id="sub_cat_id" class="result form-control" required>
-                            </select>
-                        </div>
-
-
-
-                        <div class="col-xl-4 mb-2">
                             <label class="form-label mb-1" for="cat_id">Sub Category<span
-                                    class="text-danger">*</span>
+                                    class="text-danger"></span>
                             </label>
                             <span class="text-danger error_txt cat_id"></span>
                             <select id="cat_id" class="result form-control" required>
@@ -77,34 +66,20 @@
                             </select>
                         </div>
 
-                        <div class="col-xl-4 mb-2">
+                        <div class="col-xl-4 mb-2" style="width: 396px;margin-left: -13px;">
                             <x-widgets.input-component inputColClass="col-lg-12" inputLabel="Customer Name"
-                                inputId="contact_name" inputType="text" required='required' :inputVal="$resultData->contact_name" />
+                                inputId="contact_name" inputType="text" required="required" :inputVal="$resultData->contact_name" />
                         </div>
 
-                        <div class="col-xl-4 mb-2">
-                            @if(isset($ticketDetailsData) && is_object($ticketDetailsData))
-                                <x-widgets.input-component
-                                    inputColClass="col-xls-12"
-                                    inputLabel="Phone"
-                                    inputId="phone"
-                                    inputType="text"
-                                    :inputVal="$ticketDetailsData->phone"
-                                />
-                            @else
-                                <x-widgets.input-component
-                                    inputColClass="col-xls-12"
-                                    inputLabel="Phone"
-                                    inputId="phone"
-                                    inputType="text"
-                                    :inputVal="''"
-                                />
-                            @endif
+
+                        <div class="col-xl-4 mb-2" style="margin-left: -2rem;width: 379px;">
+                            <x-widgets.input-component inputColClass="col-lg-12" inputLabel="Phone"
+                                inputId="phone" inputType="text" :inputVal="$resultData->phone" />
                         </div>
 
-                        <div class="col-xl-4 mb-2">
+                        <div class="col-xl-4 mb-2" style="margin-left: -1rem;width: 383px;">
                             <x-widgets.input-component inputColClass="col-lg-12" inputLabel="Email" inputId="email"
-                                inputType="text" required='required' :inputVal="$resultData->email" />
+                                inputType="text" :inputVal="$resultData->email" />
                         </div>
 
                         <div class="col-xl-4 mb-2">
@@ -126,14 +101,13 @@
                             <span class="text-danger error_txt priority"></span>
                             <select id="priority" class="result form-control" required>
                                 <option value=""> </option>
-                                @if (!empty($priorityList))
                                     @foreach ($priorityList as $priority)
                                         <option
-                                            {{ isset($ticketDetailsData) && is_object($ticketDetailsData) && $ticketDetailsData->priority == $priority[0] ? 'selected' : '' }}
+                                            {{$resultData->priority == $priority[0] ? 'selected' : '' }}
                                             value="{{ $priority[0] }}">{{ $priority[0] }}
                                         </option>
                                     @endforeach
-                                @endif
+
                             </select>
 
                         </div>
@@ -141,7 +115,7 @@
 
                         <div class="col-xl-4 mb-2">
                             <label class="form-label mb-1" for="ticket_owner"> Ticket Owner <span
-                                    class="text-danger">*</span>
+                                    class="text-danger"></span>
                             </label>
                             <span class="text-danger error_txt ticket_owner"></span>
                             <select id="ticket_owner" class="result form-control" required>

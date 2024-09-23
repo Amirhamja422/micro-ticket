@@ -123,7 +123,9 @@ class TicketController extends Controller
             'contact_name' => $request->contact_name,
             'status' => $request->status,
             'email' => $request->email,
+            'phone' => $request->phone,
             'description' => $description,
+            'priority' => $request->priority,
             'ticket_sla_time' => $fix_sla_time,
 
         ]);
@@ -401,7 +403,9 @@ class TicketController extends Controller
                 'contact_name' => $contact_name,
                 'status' => $status,
                 'email' => $email,
+                'phone' => $phone,
                 'description' => $descriptions,
+                'priority' => $priority,
             ]);
 
 

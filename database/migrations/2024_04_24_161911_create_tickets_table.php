@@ -19,6 +19,7 @@ class CreateTicketsTable extends Migration
             $table->string('contact_name', 100);
             $table->string('status', 20)->comment("Helpers status list");
             $table->string('email', 150)->comment('From email for incoming ticket')->nullable();
+            $table->string('phone', 100);
             $table->longText('description');
             $table->dateTime('ticket_sla_time')->nullable();
             $table->timestamps();

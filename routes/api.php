@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\API\CategorysController;
+use App\Http\Controllers\Api\CategoryapiController;
 use App\Http\Controllers\Api\DepartmentsController;
 use App\Http\Controllers\API\RegsController;
+use App\Http\Controllers\API\StatusApiController;
 use App\Http\Controllers\Api\TicketskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,6 +28,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::resource('tickets', TicketskController::class);
     Route::resource('departments', DepartmentsController::class);
     Route::resource('register', RegsController::class);
+    Route::resource('cat', CategoryapiController::class);
+    Route::resource('status', StatusApiController::class);
+
 
 // });
 
